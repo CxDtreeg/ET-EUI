@@ -15,23 +15,7 @@ namespace ET
             
             if (Define.IsEditor)
             {
-                string ct = "cs";
-                GlobalConfig globalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
-                CodeMode codeMode = globalConfig.CodeMode;
-                switch (codeMode)
-                {
-                    case CodeMode.Client:
-                        ct = "c";
-                        break;
-                    case CodeMode.Server:
-                        ct = "s";
-                        break;
-                    case CodeMode.ClientServer:
-                        ct = "cs";
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                string ct = "c";
                 List<string> startConfigs = new List<string>()
                 {
                     "StartMachineConfigCategory", 
@@ -71,23 +55,7 @@ namespace ET
     {
         public override async ETTask<byte[]> Handle(ConfigLoader.GetOneConfigBytes args)
         {
-            string ct = "cs";
-            GlobalConfig globalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
-            CodeMode codeMode = globalConfig.CodeMode;
-            switch (codeMode)
-            {
-                case CodeMode.Client:
-                    ct = "c";
-                    break;
-                case CodeMode.Server:
-                    ct = "s";
-                    break;
-                case CodeMode.ClientServer:
-                    ct = "cs";
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            string ct = "c";
             List<string> startConfigs = new List<string>()
             {
                 "StartMachineConfigCategory", 

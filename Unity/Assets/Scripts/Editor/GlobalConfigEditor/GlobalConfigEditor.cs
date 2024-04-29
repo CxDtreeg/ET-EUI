@@ -6,13 +6,11 @@ namespace ET
     [CustomEditor(typeof(GlobalConfig))]
     public class GlobalConfigEditor : Editor
     {
-        private CodeMode codeMode;
         private BuildType buildType;
 
         private void OnEnable()
         {
             GlobalConfig globalConfig = (GlobalConfig)this.target;
-            this.codeMode = globalConfig.CodeMode;
             globalConfig.BuildType = EditorUserBuildSettings.development ? BuildType.Debug : BuildType.Release;
             this.buildType = globalConfig.BuildType;
         }
@@ -22,13 +20,6 @@ namespace ET
             base.OnInspectorGUI();
 
             GlobalConfig globalConfig = (GlobalConfig)this.target;
-
-            if (this.codeMode != globalConfig.CodeMode)
-            {
-                this.codeMode = globalConfig.CodeMode;
-                this.serializedObject.Update();
-                AssemblyTool.DoCompile();
-            }
 
             if (this.buildType != globalConfig.BuildType)
             {

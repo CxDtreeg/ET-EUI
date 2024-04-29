@@ -76,32 +76,7 @@ namespace ET
         /// </summary>
         static void RefreshCodeMode()
         {
-            CodeMode codeMode = CodeMode.ClientServer;
-            GlobalConfig globalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
-            if (globalConfig)
-            {
-                codeMode = globalConfig.CodeMode;
-            }
-
-            switch (codeMode)
-            {
-                case CodeMode.Client:
-                {
-                    EnableUnityClient();
-                    break;
-                }
-                case CodeMode.Server:
-                {
-                    EnableUnityServer();
-                    break;
-                }
-                case CodeMode.ClientServer:
-                {
-                    EnableUnityClientServer();
-                    break;
-                }
-            }
-
+            EnableUnityClient();
             AssetDatabase.Refresh();
         }
 
@@ -181,55 +156,14 @@ namespace ET
         static void EnableUnityClient()
         {
             DisableAsmdef("Assets/Scripts/Model/Generate/Client/Ignore.asmdef");
-            EnableAsmdef("Assets/Scripts/Model/Generate/Server/Ignore.asmdef");
             EnableAsmdef("Assets/Scripts/Model/Generate/ClientServer/Ignore.asmdef");
 
             DisableAsmdef("Assets/Scripts/Model/Client/Ignore.asmdef");
-            EnableAsmdef("Assets/Scripts/Model/Server/Ignore.asmdef");
 
             DisableAsmdef("Assets/Scripts/Hotfix/Client/Ignore.asmdef");
-            EnableAsmdef("Assets/Scripts/Hotfix/Server/Ignore.asmdef");
 
             DisableAsmdef("Assets/Scripts/ModelView/Client/Ignore.asmdef");
             DisableAsmdef("Assets/Scripts/HotfixView/Client/Ignore.asmdef");
-        }
-
-        /// <summary>
-        /// 启用纯服务端模式
-        /// </summary>
-        static void EnableUnityServer()
-        {
-            EnableAsmdef("Assets/Scripts/Model/Generate/Client/Ignore.asmdef");
-            EnableAsmdef("Assets/Scripts/Model/Generate/Server/Ignore.asmdef");
-            DisableAsmdef("Assets/Scripts/Model/Generate/ClientServer/Ignore.asmdef");
-
-            DisableAsmdef("Assets/Scripts/Model/Client/Ignore.asmdef");
-            DisableAsmdef("Assets/Scripts/Model/Server/Ignore.asmdef");
-
-            DisableAsmdef("Assets/Scripts/Hotfix/Client/Ignore.asmdef");
-            DisableAsmdef("Assets/Scripts/Hotfix/Server/Ignore.asmdef");
-
-            EnableAsmdef("Assets/Scripts/HotfixView/Client/Ignore.asmdef");
-            EnableAsmdef("Assets/Scripts/ModelView/Client/Ignore.asmdef");
-        }
-
-        /// <summary>
-        /// 启用双端模式
-        /// </summary>
-        static void EnableUnityClientServer()
-        {
-            EnableAsmdef("Assets/Scripts/Model/Generate/Client/Ignore.asmdef");
-            EnableAsmdef("Assets/Scripts/Model/Generate/Server/Ignore.asmdef");
-            DisableAsmdef("Assets/Scripts/Model/Generate/ClientServer/Ignore.asmdef");
-
-            DisableAsmdef("Assets/Scripts/Model/Client/Ignore.asmdef");
-            DisableAsmdef("Assets/Scripts/Model/Server/Ignore.asmdef");
-
-            DisableAsmdef("Assets/Scripts/Hotfix/Client/Ignore.asmdef");
-            DisableAsmdef("Assets/Scripts/Hotfix/Server/Ignore.asmdef");
-
-            DisableAsmdef("Assets/Scripts/HotfixView/Client/Ignore.asmdef");
-            DisableAsmdef("Assets/Scripts/ModelView/Client/Ignore.asmdef");
         }
 
         /// <summary>

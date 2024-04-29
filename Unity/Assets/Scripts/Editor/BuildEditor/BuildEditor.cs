@@ -79,12 +79,6 @@ namespace ET
                     return;
                 }
 
-                if (this.globalConfig.CodeMode != CodeMode.Client)
-                {
-                    Log.Error("build package CodeMode must be CodeMode.Client, please select Client");
-                    return;
-                }
-
                 if (this.globalConfig.EPlayMode == EPlayMode.EditorSimulateMode)
                 {
                     Log.Error("build package EPlayMode must not be EPlayMode.EditorSimulateMode, please select HostPlayMode");
