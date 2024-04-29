@@ -202,7 +202,7 @@ public partial class UICodeSpawner
         
         strBuilder.AppendFormat("\t[FriendOf(typeof({0}))]\r\n", strDlgName);
        
-        strBuilder.AppendFormat("\tpublic static  class {0}\r\n", strDlgName + "System");
+        strBuilder.AppendFormat("\tpublic static class {0}\r\n", strDlgName + "System");
           strBuilder.AppendLine("\t{");
           strBuilder.AppendLine("");
 
@@ -297,7 +297,7 @@ public partial class UICodeSpawner
         strBuilder.AppendLine("{");
         strBuilder.AppendLine("\t[FriendOf(typeof(UIBaseWindow))]");
         strBuilder.AppendFormat("\t[AUIEvent(WindowID.WindowID_{0})]\n",strDlgName.Substring(3));
-        strBuilder.AppendFormat("\tpublic  class {0}EventHandler : IAUIEventHandler\r\n", strDlgName);
+        strBuilder.AppendFormat("\tpublic class {0}EventHandler : IAUIEventHandler\r\n", strDlgName);
           strBuilder.AppendLine("\t{");
           strBuilder.AppendLine("");
           
@@ -381,7 +381,7 @@ public partial class UICodeSpawner
         strBuilder.AppendLine("{");
         strBuilder.AppendLine("\t [ComponentOf(typeof(UIBaseWindow))]");
        
-        strBuilder.AppendFormat("\tpublic  class {0} :Entity,IAwake,IUILogic\r\n", strDlgName);
+        strBuilder.AppendFormat("\tpublic class {0} :Entity,IAwake,IUILogic\r\n", strDlgName);
           strBuilder.AppendLine("\t{");
           strBuilder.AppendLine("");
           
@@ -474,7 +474,7 @@ public partial class UICodeSpawner
 	    strBuilder.AppendLine("{");
 	    strBuilder.AppendLine($"\t[ComponentOf(typeof({strDlgName}))]");
 	    strBuilder.AppendLine("\t[EnableMethod]");
-	    strBuilder.AppendFormat("\tpublic  class {0} : Entity,IAwake,IDestroy \r\n", strDlgComponentName)
+	    strBuilder.AppendFormat("\tpublic class {0} : Entity,IAwake,IDestroy \r\n", strDlgComponentName)
 		    .AppendLine("\t{");
      
 	    CreateWidgetBindCode(ref strBuilder, gameObject.transform);
@@ -732,18 +732,18 @@ public partial class UICodeSpawner
     {
         WidgetInterfaceList = new List<string>();        
         WidgetInterfaceList.Add("Button");
-        WidgetInterfaceList.Add( "Text");
+        WidgetInterfaceList.Add("Text");
         WidgetInterfaceList.Add("TMPro.TextMeshProUGUI");
-        WidgetInterfaceList.Add( "TMPro.TMP_InputField");
+        WidgetInterfaceList.Add("TMPro.TMP_InputField");
         WidgetInterfaceList.Add("Input");
         WidgetInterfaceList.Add("InputField");
-        WidgetInterfaceList.Add( "Scrollbar");
+        WidgetInterfaceList.Add("Scrollbar");
         WidgetInterfaceList.Add("ToggleGroup");
         WidgetInterfaceList.Add("Toggle");
         WidgetInterfaceList.Add("Dropdown");
         WidgetInterfaceList.Add("Slider");
         WidgetInterfaceList.Add("ScrollRect");
-        WidgetInterfaceList.Add( "Image");
+        WidgetInterfaceList.Add("Image");
         WidgetInterfaceList.Add("RawImage");
         WidgetInterfaceList.Add("Canvas");
         WidgetInterfaceList.Add("UIWarpContent");
