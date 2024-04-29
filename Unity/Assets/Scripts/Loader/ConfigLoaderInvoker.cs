@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ET
 {
     [Invoke]
-    public class GetAllConfigBytes: AInvokeHandler<ConfigLoader.GetAllConfigBytes, ETTask<Dictionary<Type, byte[]>>>
+    public class GetAllConfigBytes : AInvokeHandler<ConfigLoader.GetAllConfigBytes, ETTask<Dictionary<Type, byte[]>>>
     {
         public override async ETTask<Dictionary<Type, byte[]>> Handle(ConfigLoader.GetAllConfigBytes args)
         {
@@ -16,24 +16,10 @@ namespace ET
             if (Define.IsEditor)
             {
                 string ct = "c";
-                List<string> startConfigs = new List<string>()
-                {
-                    "StartMachineConfigCategory", 
-                    "StartProcessConfigCategory", 
-                    "StartSceneConfigCategory", 
-                    "StartZoneConfigCategory",
-                };
                 foreach (Type configType in configTypes)
                 {
                     string configFilePath;
-                    if (startConfigs.Contains(configType.Name))
-                    {
-                        configFilePath = $"../Config/Excel/{ct}/{Options.Instance.StartConfig}/{configType.Name}.bytes";    
-                    }
-                    else
-                    {
-                        configFilePath = $"../Config/Excel/{ct}/{configType.Name}.bytes";
-                    }
+                    configFilePath = $"../Config/Excel/{ct}/{configType.Name}.bytes";
                     output[configType] = File.ReadAllBytes(configFilePath);
                 }
             }
@@ -49,35 +35,27 @@ namespace ET
             return output;
         }
     }
-    
+
     [Invoke]
-    public class GetOneConfigBytes: AInvokeHandler<ConfigLoader.GetOneConfigBytes, ETTask<byte[]>>
+    public class GetOneConfigBytes : AInvokeHandler<ConfigLoader.GetOneConfigBytes, ETTask<byte[]>>
     {
         public override async ETTask<byte[]> Handle(ConfigLoader.GetOneConfigBytes args)
         {
-            string ct = "c";
-            List<string> startConfigs = new List<string>()
-            {
-                "StartMachineConfigCategory", 
-                "StartProcessConfigCategory", 
-                "StartSceneConfigCategory", 
-                "StartZoneConfigCategory",
-            };
-
             string configName = args.ConfigName;
-                
-            string configFilePath;
-            if (startConfigs.Contains(configName))
+            byte[] result = null;
+            if (Define.IsEditor)
             {
-                configFilePath = $"../Config/Excel/{ct}/{Options.Instance.StartConfig}/{configName}.bytes";    
+                string ct = "c";
+                var configFilePath = $"../Config/Excel/{ct}/{configName}.bytes";
+                result = File.ReadAllBytes(configFilePath);
             }
             else
             {
-                configFilePath = $"../Config/Excel/{ct}/{configName}.bytes";
+                TextAsset v = await ResourcesComponent.Instance.LoadAssetAsync<TextAsset>($"Assets/Bundles/Config/{configName}.bytes");
+                result = v.bytes;
             }
-
             await ETTask.CompletedTask;
-            return File.ReadAllBytes(configFilePath);
+            return result;
         }
     }
 }
