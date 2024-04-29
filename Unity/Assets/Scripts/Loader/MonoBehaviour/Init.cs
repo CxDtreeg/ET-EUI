@@ -25,7 +25,6 @@ namespace ET
 			Parser.Default.ParseArguments<Options>(args)
 				.WithNotParsed(error => throw new Exception($"命令行格式错误! {error}"))
 				.WithParsed((o)=>World.Instance.AddSingleton(o));
-			Options.Instance.StartConfig = $"StartConfig/Localhost";
 			
 			World.Instance.AddSingleton<Logger>().Log = new UnityLogger();
 			ETTask.ExceptionHandler += Log.Error;

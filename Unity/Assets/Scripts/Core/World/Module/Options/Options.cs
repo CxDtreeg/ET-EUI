@@ -23,9 +23,6 @@ namespace ET
         [Option("AppType", Required = false, Default = AppType.Server, HelpText = "AppType enum")]
         public AppType AppType { get; set; }
 
-        [Option("StartConfig", Required = false, Default = "StartConfig/Localhost")]
-        public string StartConfig { get; set; }
-
         [Option("Process", Required = false, Default = 1)]
         public int Process { get; set; }
         
