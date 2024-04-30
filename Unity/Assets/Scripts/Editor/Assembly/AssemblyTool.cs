@@ -157,11 +157,10 @@ namespace ET
         {
             DisableAsmdef("Assets/Scripts/Model/Generate/Client/Ignore.asmdef");
             EnableAsmdef("Assets/Scripts/Model/Generate/ClientServer/Ignore.asmdef");
+            EnableAsmdef("Assets/Scripts/Model/Generate/Server/Ignore.asmdef");
 
             DisableAsmdef("Assets/Scripts/Model/Client/Ignore.asmdef");
-
             DisableAsmdef("Assets/Scripts/Hotfix/Client/Ignore.asmdef");
-
             DisableAsmdef("Assets/Scripts/ModelView/Client/Ignore.asmdef");
             DisableAsmdef("Assets/Scripts/HotfixView/Client/Ignore.asmdef");
         }
